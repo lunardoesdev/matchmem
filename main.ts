@@ -145,6 +145,7 @@ onClick("card", async (card: GameObj) => {
                 lastCard = undefined
                 cardsLeft -= 2
             } else {
+                await wait(1)
                 closeCard(lastCard)
                 await closeCard(card)
                 lastCard = undefined
