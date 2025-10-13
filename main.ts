@@ -89,6 +89,7 @@ for (let x = 0; x < 4; x++) {
 
 async function openCard(card: GameObj) {
     card.open = true
+    selCards += 1
     card.clickable = false
     const time = 0.3
     const timepart = time / 2
@@ -107,7 +108,10 @@ async function openCard(card: GameObj) {
     card.clickable = true
 }
 
+var selCards = 0
+
 async function closeCard(card: GameObj) {
+    if (!card.open) return
     card.open = false
     card.clickable = true
     const time = 0.3
@@ -123,30 +127,39 @@ async function closeCard(card: GameObj) {
         card.scaleTo(val, 1)
     })
     card.clickable = true
+    selCards -= 1
 }
 
 var lastCard: GameObj | undefined = undefined
 
 let cardsLeft = 16
 
+async function matchRotate(card1: GameObj, card2: GameObj) {
+    await tween(0, 135, 0.5, (val) => {
+        card1.rotateTo(val)
+        card2.rotateTo(val)        
+    })
+}
+
 onClick("card", async (card: GameObj) => {
-    if (card.clickable) {
+    if (card.clickable && selCards < 2) {
         if (card.open) {
             closeCard(card)
         } else {
             await openCard(card)
             if (lastCard != null)
-            if (lastCard.card == card.card) {
+            if (((lastCard.x != card.x) || (lastCard.y != card.y)) && lastCard.card == card.card) {
                 console.log(lastCard.sprite)
-                lastCard.rotateTo(45)
                 lastCard.clickable = false
-                card.rotateTo(45)
+                matchRotate(card, lastCard)
                 card.clickable = false
                 lastCard = undefined
                 cardsLeft -= 2
+                selCards -= 2
             } else {
                 await wait(1)
-                closeCard(lastCard)
+                if (lastCard != undefined)
+                    closeCard(lastCard)
                 await closeCard(card)
                 lastCard = undefined
             }
@@ -162,6 +175,7 @@ onClick("card", async (card: GameObj) => {
             container.rotateBy(2)
         })
     }
+    console.log(selCards)
 })
 
 // let rot = rotate(30)
