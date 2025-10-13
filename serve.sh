@@ -1,1 +1,1 @@
-bun ./index.html
+bun ./index.html ./cover.png
