@@ -170,6 +170,7 @@ onClick("card", async (card: GameObj) => {
         lastCard = card
 
     if (!container.win && cardsLeft == 0) {
+        container.win = true
         /// WIN
         container.onUpdate(() => {
             container.rotateBy(2)

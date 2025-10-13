@@ -5808,7 +5808,7 @@ onClick("card", async (card) => {
           cardsLeft -= 2;
           selCards -= 2;
         } else {
-          await wait(1);
+          await wait(0.2);
           if (lastCard != null)
             closeCard(lastCard);
           await closeCard(card);
@@ -5819,6 +5819,7 @@ onClick("card", async (card) => {
   if (card.open && card.clickable)
     lastCard = card;
   if (!container.win && cardsLeft == 0) {
+    container.win = true;
     container.onUpdate(() => {
       container.rotateBy(2);
     });
