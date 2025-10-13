@@ -1,0 +1,1 @@
+bun build --outdir=site ./index.html
