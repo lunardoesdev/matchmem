@@ -100,7 +100,7 @@ async function openCard(card: GameObj) {
     card.color.g = 0
     card.color.b = 0
     
-    card.tween(0.0, 1.0, timepart, (val: any) => {
+    await card.tween(0.0, 1.0, timepart, (val: any) => {
         card.scaleTo(val, 1)
     })
 
