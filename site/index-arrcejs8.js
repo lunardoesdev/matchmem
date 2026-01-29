@@ -5732,7 +5732,7 @@ for (let x = 0;x < 4; x++) {
         width: cardWidth,
         height: cardHeight
       }),
-      color(255, 255, 120),
+      color(255, 255, 255),
       rotate(0),
       "card",
       {
@@ -5756,8 +5756,8 @@ async function openCard(card) {
   });
   card.sprite = card.card;
   card.color.r = 255;
-  card.color.g = 0;
-  card.color.b = 0;
+  card.color.g = 255;
+  card.color.b = 255;
   await card.tween(0, 1, timepart, (val) => {
     card.scaleTo(val, 1);
   });

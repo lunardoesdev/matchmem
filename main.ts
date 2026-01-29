@@ -69,7 +69,7 @@ for (let x = 0; x < 4; x++) {
                 width: cardWidth,
                 height: cardHeight,
             }),
-            color(255, 255, 120),
+            color(255, 255, 255),
             rotate(0),
 
             // outline(4)
@@ -97,9 +97,10 @@ async function openCard(card: GameObj) {
         card.scaleTo(val, 1)
     })
     card.sprite = card.card
+    // Keep sprite colors intact (no tinting).
     card.color.r = 255
-    card.color.g = 0
-    card.color.b = 0
+    card.color.g = 255
+    card.color.b = 255
     
     await card.tween(0.0, 1.0, timepart, (val: any) => {
         card.scaleTo(val, 1)
