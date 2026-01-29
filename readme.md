@@ -4,3 +4,6 @@ using Kaplay js game engine and bun for bundling/serving things.
 
 ## play
 https://lunardoesdev.github.io/matchmem/site/
+
+## screenshot
+![screenshot](./screenshot.png)
